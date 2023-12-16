@@ -7,6 +7,9 @@ import java.util.List;
 public class InputView {
     private static final String SEPARATOR = ",";
     private static final String ERROR = "유효하지 않은 입력 값입니다. 다시 입력해 주세요.";
+    private static final int DATE = 2;
+
+
     /**
      * 정수 입력을 받고 int 파싱 후 반환하는 메소드
      */
@@ -14,7 +17,12 @@ public class InputView {
         System.out.print("비상 근무를 배정할 월과 시작 요일을 입력하세요> ");
         String input = Console.readLine();
         checkIsNullOrBlank(input, ERROR);
-        return splitBySeparator(input, ERROR);
+
+        List<String> result = splitBySeparator(input, ERROR);
+        if (result.size() != DATE) {
+            throw new IllegalArgumentException(ERROR);
+        }
+        return result;
     }
 
     /**
