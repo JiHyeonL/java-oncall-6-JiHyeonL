@@ -36,7 +36,7 @@ public class InputView {
     }
 
     public static List<String> readWeekendWorker() {
-        System.out.print("휴일 비상 근무 순번대로 사원 닉네임을 입력하세요>");
+        System.out.print("휴일 비상 근무 순번대로 사원 닉네임을 입력하세요> ");
         String input = Console.readLine();
         checkIsNullOrBlank(input, ERROR);
         return splitBySeparator(input, ERROR);

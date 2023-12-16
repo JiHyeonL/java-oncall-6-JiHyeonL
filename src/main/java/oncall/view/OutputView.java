@@ -13,7 +13,7 @@ public class OutputView {
     }
 
     public static void writeWorkerResult(String workersInfo) {
-        System.out.println(workersInfo);
+        System.out.println("\n" + workersInfo);
     }
 
 
