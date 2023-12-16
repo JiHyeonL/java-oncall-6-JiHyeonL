@@ -19,6 +19,8 @@ public class MainController {
         setEmergencyWeekdayWorkerWithValidation();
         setEmergencyWeekendDateWithValidation();
 
+        emergencyService.calculateEmergencyWorkerAssignment();
+        OutputView.writeWorkerResult(emergencyService.getAssignedWorker());
     }
 
 
