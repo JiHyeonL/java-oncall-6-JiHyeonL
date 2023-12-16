@@ -48,14 +48,6 @@ public class InputView {
         }
     }
 
-    private static int parseToInt(String input, String message) {
-        try {
-            return Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(message);
-        }
-    }
-
     private static List<String> splitBySeparator(String input, String message) {
         List<String> result = Arrays.asList(input.split(SEPARATOR));
         for (String splitInput : result) {

@@ -1,7 +1,5 @@
 package oncall.domain;
 
-import java.time.LocalDate;
-
 public class Worker {
     private final int MAX_NAME_LENGTH = 5;
 

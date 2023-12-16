@@ -14,11 +14,12 @@ public class MainController {
     }
 
     public void run() {
-        // 입력
+        /** 입력 **/
         setEmergencyDateWithValidation();
         setEmergencyWeekdayWorkerWithValidation();
         setEmergencyWeekendDateWithValidation();
 
+        /** 근무 배정 후 출력 **/
         emergencyService.calculateEmergencyWorkerAssignment();
         OutputView.writeWorkerResult(emergencyService.getAssignedWorker());
     }
