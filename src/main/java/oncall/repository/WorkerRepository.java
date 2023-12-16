@@ -2,10 +2,7 @@ package oncall.repository;
 import oncall.domain.Holiday;
 import oncall.domain.Worker;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class WorkerRepository {
     private final List<String> ALL_WEEKDAYS = List.of("월", "화", "수", "목", "금", "토", "일");
@@ -25,11 +22,27 @@ public class WorkerRepository {
     private int date = 0;
     private int endDate = 0;
 
-    public void addWeekdayWorker(String worker) {
-        weekday.add(new Worker(worker));
+    public void addAllWeekdayWorker(List<String> workers) {
+        validate(workers);
+
+        for (String worker : workers) {
+            weekday.add(new Worker(worker));
+        }
     }
-    public void addWeekendWorker(String worker) {
-        weekend.add(new Worker(worker));
+    public void addAllWeekendWorker(List<String> workers) {
+        validate(workers);
+
+        for (String worker : workers) {
+            weekend.add(new Worker(worker));
+        }
+    }
+
+    private void validate(List<String> workers) {
+        Set<String> noDuplicate = new HashSet<>(workers);
+
+        if (workers.size() != noDuplicate.size()) {
+            throw new IllegalArgumentException("중복된 이름이 있습니다.");
+        }
     }
 
     public List<String> calculateEmergencyWorkerAssignment(int month, String dateOfWeek, int endDate) {
@@ -71,7 +84,7 @@ public class WorkerRepository {
                 }
             }
             String dayOfWeek = ALL_WEEKDAYS.get(this.dateOfWeekIndex);
-            if (Holiday.isInHoliday(this.month, this.date)) {
+            if (Holiday.isInHoliday(this.month, this.date) && WEEKDAY.contains(ALL_WEEKDAYS.get(dateOfWeekIndex))) {
                 dayOfWeek = dayOfWeek+"(휴일)";
             }
             result.add(weekend.get(weekendIndex));
