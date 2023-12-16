@@ -3,7 +3,8 @@ package oncall.domain;
 import java.time.LocalDate;
 
 public class Worker {
-    private final String FORMAT = "%d월 %d일 %s %s";
+    private final int MAX_NAME_LENGTH = 5;
+
     private final String name;
 
     public Worker(String name) {
@@ -23,6 +24,8 @@ public class Worker {
     }
 
     private void validate(String name) {
-
+        if (name.length() > MAX_NAME_LENGTH) {
+            throw new IllegalArgumentException("이름은 5글자 이하로 입력해주세요.");
+        }
     }
 }
