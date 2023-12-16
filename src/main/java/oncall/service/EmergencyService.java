@@ -13,6 +13,8 @@ public class EmergencyService {
     private static final String LINE_SEPARATOR = System.lineSeparator();
     private final List<String> Weekdays = List.of("월", "화", "수", "목", "금", "토", "일");
     private final List<Integer> MONTH = List.of(1,2,3,4,5,6,7,8,9,10,11,12);
+    private final int MIN_WORKER_SIZE = 5;
+    private final int MAX_WORKER_SIZE = 35;
 
     private final WorkerRepository workerRepository;
     private List<String> assignedWorker;
@@ -56,14 +58,18 @@ public class EmergencyService {
 
 
     public void setEmergencyWeekdayWorker(List<String> weekdayWorker) {
-        for (String worker : weekdayWorker) {
-            workerRepository.addWeekdayWorker(worker);
-        }
+        validateWorkerSize(weekdayWorker);
+        workerRepository.addAllWeekdayWorker(weekdayWorker);
     }
 
-    public void setEmergencyWeekendWorker(List<String> weekdayWorker) {
-        for (String worker : weekdayWorker) {
-            workerRepository.addWeekendWorker(worker);
+    public void setEmergencyWeekendWorker(List<String> weekendWorker) {
+        validateWorkerSize(weekendWorker);
+        workerRepository.addAllWeekendWorker(weekendWorker);
+    }
+
+    private void validateWorkerSize(List<String> workers) {
+        if (workers.size() < MIN_WORKER_SIZE || workers.size() > MAX_WORKER_SIZE) {
+            throw new IllegalArgumentException("유효하지 않은 인원입니다. 다시 입력해 주세요.");
         }
     }
 
