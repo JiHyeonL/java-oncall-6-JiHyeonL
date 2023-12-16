@@ -51,7 +51,7 @@ public class MainController {
     private void setEmergencyWeekendDateWithValidation() {
         while (true) {
             try {
-                List<String> weekendWorker = InputView.readWeekdayWorker();
+                List<String> weekendWorker = InputView.readWeekendWorker();
                 emergencyService.setEmergencyWeekendWorker(weekendWorker);
                 break;
             } catch (IllegalArgumentException e) {
