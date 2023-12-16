@@ -1,4 +1,4 @@
-package christmas.view;
+package oncall.view;
 
 public class OutputView {
     private static final String ERROR_PREFIX = "[ERROR] ";
